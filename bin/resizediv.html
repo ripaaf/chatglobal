@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<style>
+    #resizeableDiv {
+  width: 100%;
+  min-height: 300px;
+  max-height: 500px;
+  background-color: lightblue;
+  resize: both; /* Enables resizing */
+  overflow: auto;
+}
+
+</style>
+<body>
+  <div id="resizeableDiv"></div>
+  <script src="script.js"></script>
+</body>
+
+<script>
+const resizeableDiv = document.getElementById("resizeableDiv");
+let isResizing = false;
+
+resizeableDiv.addEventListener("mousedown", (e) => {
+  isResizing = true;
+  e.preventDefault();
+
+  const initialHeight = resizeableDiv.offsetHeight;
+  const initialY = e.clientY;
+
+  document.addEventListener("mousemove", resize);
+  document.addEventListener("mouseup", stopResize);
+
+  function resize(e) {
+    if (isResizing) {
+      const height = initialHeight + (e.clientY - initialY);
+      resizeableDiv.style.height = `${height}px`;
+    }
+  }
+
+  function stopResize() {
+    isResizing = false;
+    document.removeEventListener("mousemove", resize);
+    document.removeEventListener("mouseup", stopResize);
+  }
+});
+</script>
+</html>
