@@ -27,16 +27,16 @@ if (isset($_POST['message'])) {
     $message = $_POST['message'];
     $file = $_FILES['file'];
 
-    // Check if a file was uploaded
+
     if ($file && $file['error'] === UPLOAD_ERR_OK) {
-        // Handle file upload
+
         $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
         //$newFileName = uniqid() . '.' . $fileExtension;
         $newFileName = $file['name'];
         $uploadDirectory = 'uploads/' . $fileExtension . '/'; // Specify your folder path
         $targetPath = $uploadDirectory . $newFileName;
 
-        // Check if the folder for this file extension exists, if not, create it
+
         if (!is_dir($uploadDirectory)) {
             mkdir($uploadDirectory, 0755, true); // Create the folder with proper permissions
         }
@@ -49,7 +49,7 @@ if (isset($_POST['message'])) {
         }
 
         if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-            // File upload was successful
+
             removeExifData($targetPath);
             $mediapath = $targetPath;
         } else {
@@ -57,7 +57,7 @@ if (isset($_POST['message'])) {
         }
     }
 
-    // Get the current date and time
+
     $currentDateTime = date('Y-m-d H:i:s');
 
     $insertQuery = "INSERT INTO chat (iduser, message, media, datetime) VALUES (:iduser, :message, :media, :datetime)";

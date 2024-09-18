@@ -1,17 +1,15 @@
 <?php
 include "connect.php";
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate and sanitize user input
+
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
 
-    // Insert the user into the 'user' table
     $sql = "INSERT INTO user (name, password, anonym, photo) VALUES (?, ?, 'false','https://i.imgur.com/YQSxsYm.png')";
     $stmt = $pdo->prepare($sql);
     if ($stmt->execute([$name, $password])) {
-        // Registration successful, you can redirect the user to a login page
+        // Registration successful,
         header("Location: login.php");
         exit();
     } else {

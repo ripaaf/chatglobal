@@ -17,7 +17,7 @@ if (isset($_SESSION['userId'])) {
 
     // Check if the user is not anonymous (anonym = false)
     if ($user['anonym'] === 'true') {
-        // Redirect to index.php
+
         setcookie('chatOption', 'logged_in', time() + 60 * 60 * 24 * 30);
         header("Location: upload_photo.php");
         exit();
@@ -44,7 +44,7 @@ $user = $stmt->fetch();
 $previousPassword = $user['password'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
-    // Handle profile updates
+
     $updateData = array();
     $passwordChanged = false;
 
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
     $currentPassword = $_POST['current_password'];
 
     if (!empty($newPassword)) {
-        // Check if the current password is correct
+
         if (password_verify($currentPassword, $previousPassword)) {
             $rightCurrentPassword = "Password updated.";
             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
         }
     }
 
-    // Upload a new profile photo if selected
+
     if (!empty($_FILES['new_photo']['name'])) {
         $targetDirectory = 'profile_img/';
         if (!is_dir($targetDirectory)) {
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
         }
     }
 
-    // Update the user's profile data
+
     if (!empty($updateData)) {
         $updateProfileSql = "UPDATE user SET ";
         $params = array();
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
         $stmt->execute($params);
 
         if ($passwordChanged) {
-            // Redirect to refresh the page after password change
+
             header("Location: profile.php");
             exit();
         }

@@ -15,17 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result) {
         $mediaPath = $result['media'];
 
-        // Delete the message from the database
         $deleteQuery = "DELETE FROM chat WHERE iduser = ? AND datetime = ?";
         $deleteStmt = $pdo->prepare($deleteQuery);
         $deleteStmt->execute([$userId, $datetime]);
 
-        // Delete the media file on the local server
         if (file_exists($mediaPath)) {
             unlink($mediaPath);
         }
 
-        // Respond with a success status (you can customize the response as needed)
         echo 'Message and media deleted successfully';
     } else {
         echo 'Message not found';

@@ -15,7 +15,6 @@ if (isset($_SESSION['userId'])) {
 
     $expiration = time() + (7 * 24 * 60 * 60); // 7 days
 
-    // Save the userId in a cookie
     setcookie('nomor-sesi', $tes, $expiration);
 
     $sql = "SELECT name, photo FROM user WHERE id = ?";
@@ -167,12 +166,12 @@ if (isset($_SESSION['userId'])) {
         const acceptCookiesButton = document.getElementById("accept-cookies");
 
         acceptCookiesButton.addEventListener("click", () => {
-            // Set a cookie to remember that the user accepted cookies
+
             document.cookie = "cookie-consent=accepted; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
             cookieConsent.style.display = "none";
         });
 
-        // Check if the user has already accepted cookies
+
         if (document.cookie.includes("cookie-consent=accepted")) {
             cookieConsent.style.display = "none";
         }
@@ -206,7 +205,7 @@ if (isset($_SESSION['userId'])) {
         });
 
         sendButton.addEventListener('click', () => {
-            // Clear the file list by setting its innerHTML to an empty string
+
             fileList.innerHTML = '';
         });
 
@@ -222,7 +221,7 @@ if (isset($_SESSION['userId'])) {
 
     </script>
     <script>
-        // JavaScript to handle the chat-input-wrapper
+
         const chatInputWrapper = document.getElementById("chat-input");
 
         // Check if the user is logged in

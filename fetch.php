@@ -24,8 +24,7 @@ function formatText($message) {
 }
 
 function generateFileAttachment($media) {
-    // Extract the file name from the media URL or identifier
-    // Modify this logic according to your database schema
+
     $fileName = basename($media);  // Example: 'my_file.txt'
 
     // Generate the file attachment HTML
@@ -175,13 +174,13 @@ function copymessage(messageId) {
 
 function deleteMessage(userId, datetime) {
     if (confirm("Are you sure you want to delete this message?")) {
-        // Send an AJAX request to the server to delete the message
+
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'delete_message.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                // Handle the response, e.g., remove the deleted message from the UI
+
                 const messageElement = document.getElementById(`message-copy-${userId}-${datetime}`);
                 if (messageElement) {
                     messageElement.parentNode.remove();
