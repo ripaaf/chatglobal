@@ -24,7 +24,7 @@ or you can download the project file on [here.](https://github.com/ripaaf/chatgl
 
 ### database
 
-the database itself you can see and download in [here](https://github.com/ripaaf/chatglobal/blob/main/globalchat.sql) you can import the database by using `mysql -u username -p globalchat < file.sql` then you all set!
+the database itself you can see and download in [here](https://github.com/ripaaf/chatglobal/blob/main/globalchat.sql) you can import the database by using `mysql -u username -p globalchat < globalchat.sql` then you all set!
 
 *for a quick run for the app you can type in the folder
 
