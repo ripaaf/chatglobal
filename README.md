@@ -14,7 +14,7 @@ this app is running using pure PHP code and mysql database and a synchronous AJA
 
 ## how to download
 
-actually its quite simple if you already knows what ur doing but if not, first you download PHP then clone this repo to your directory
+actually its quite simple if you already knows what ur doing but if not, first you download PHP then clone this repo to your directory.
 
 ```
 git clone https://github.com/ripaaf/chatglobal.git
